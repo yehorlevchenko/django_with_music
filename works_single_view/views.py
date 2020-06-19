@@ -1,5 +1,23 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
+from django.shortcuts import reverse
+
+from .models import Work, Contributor
+from .utils import parse_works, save_works_from_csv
 
 
 def index(request):
-    return HttpResponse("Music single view app")
+    template = loader.get_template('index.html')
+    context = {}
+    if request.method == 'GET':
+        return HttpResponse(template.render(context, request))
+
+    in_file = request.FILES.get('csv_file')
+    if not in_file:
+        return HttpResponseRedirect(reverse('index'))
+
+    if in_file.name.endswith('.csv'):
+        data = in_file.read().decode('utf-8')
+        raw_works_list = parse_works(data)
+        save_works_from_csv(raw_works_list)
+        return HttpResponseRedirect(reverse('index'))
