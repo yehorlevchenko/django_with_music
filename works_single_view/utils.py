@@ -2,34 +2,40 @@ from works_single_view.models import Work, Contributor
 
 
 def parse_works(in_data):
+    """
+    Will parse received work data into a list of model-like dicts
+    :param in_data: string representing all uploaded data
+    :return:
+    """
     if not isinstance(in_data, str):
         raise TypeError(f"Received unexpected data of type {type(in_data)}")
 
-    works_list = list()
     rows = in_data.strip().split('\n')[1:]
-    for row in rows:
-        fields = row.split(',')
-        work = {'title': fields[0],
-                'contributors': fields[1],
-                'iswc': fields[2]}
-        works_list.append(work)
+    works_list = [map(map_works, row) for row in rows]
     return works_list
 
-def parse_contributors(in_data):
-    if not isinstance(in_data, str):
-        raise TypeError(f"Received unexpected data of type {type(in_data)}")
 
-    contributors_names = list()
-    rows = in_data.strip().split('\n')[1:]
-    for row in rows:
-        fields = row.split(',')
-        names_list = fields[1].split('|')
-        contributors_names.extend(names_list)
-    contributors_names = list(set(contributors_names))
+def map_works(raw_data):
+    """
+    Will map parsed work data to a dictionary
+    :param raw_data: single string representing Work
+    :return:
+    """
+    fields = raw_data.split(',')
+    work = {'title': fields[0],
+            'contributors': fields[1],
+            'iswc': fields[2]}
+    return work
 
-    return [{'name': name} for name in contributors_names]
 
-def save_works_from_csv(works):
+def save_works(works):
+    """
+    Will handle Work and Contributor saving process.
+    This method creates both models, also updates
+    Work with missing data.
+    :param works: list of Work-like dicts
+    :return:
+    """
     for work_data in works:
         new_work = Work.create(iswc=work_data['iswc'],
                                title=work_data['title'])
