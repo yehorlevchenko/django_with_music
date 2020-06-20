@@ -2,15 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'works_single_view/main.css' %}">
     <title>Works Single View</title>
 </head>
-<body>
 
-<form action="{% url 'index' %}" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name="csv_file">
-    <input type="submit" value="Upload">
-</form>
+<body>
+    <div class="content">
+      <h2>Upload works</h2>
+
+      <form action="{% url 'index' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="csv_file">
+        <input type="submit" value="Upload">
+      </form>
+
+      <h2>Works list</h2>
+      <table>
+        <tr>
+          <th>ISWC</th>
+          <th>Title</th>
+          <th>Contributors</th>
+        </tr>
+        {% for work in works_list %}
+          <tr>
+            <td>{{ work.iswc }}</td>
+            <td>{{ work.title }}</td>
+            <td>
+                {% for contributor in work.contributors.all %}
+                    {{ contributor.name }}<br>
+                {% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </table>
+
+    </div>
 
 </body>
 </html>
+
+
+
+
+
