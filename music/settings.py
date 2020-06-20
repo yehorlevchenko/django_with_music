@@ -30,6 +30,7 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(' ')
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'works_single_view.apps.MusicViewConfig',
     'django.contrib.admin',
     'django.contrib.auth',
