@@ -11,7 +11,7 @@ def parse_works(in_data):
         raise TypeError(f"Received unexpected data of type {type(in_data)}")
 
     rows = in_data.strip().split('\n')[1:]
-    works_list = [map(map_works, row) for row in rows]
+    works_list = list(map(map_works, rows))
     return works_list
 
 
