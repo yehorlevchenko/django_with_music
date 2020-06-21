@@ -1,16 +1,11 @@
+from django.urls import include, path
 from rest_framework import routers
-from django.conf import settings
-from works_single_view.api.views import (
-    WorkViewSet,
-    ContributorViewSet,
-)
+from works_single_view.api.views import WorkViewSet
 
-if settings.DEBUG:
-    router = routers.DefaultRouter()
-else:
-    router = routers.SimpleRouter()
+router = routers.DefaultRouter()
+router.register(r'works', WorkViewSet)
 
-router.register(r"works", WorkViewSet)
-router.register(r"contributors", ContributorViewSet)
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+    path('works/', include('works_single_view.urls'))
+]
