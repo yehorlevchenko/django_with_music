@@ -1,0 +1,50 @@
+body, html {
+    margin: 0;
+    font-family: sans-serif;
+    width: 100%;
+}
+
+.content {
+    margin: 0 auto;
+    width: 800px;
+}
+
+table, td, th {
+    border: 1px solid #aaa;
+}
+
+table {
+    margin: 20px 0;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th {
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+#content {
+    width: 70%;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
