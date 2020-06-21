@@ -7,5 +7,5 @@ router.register(r'works', WorkViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('works/', include('works_single_view.urls'))
+    path('works/', WorkViewSet)
 ]
