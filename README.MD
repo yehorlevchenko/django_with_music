@@ -7,14 +7,14 @@
 
 
 ### Works Single View
-This is a view showing all stored works and capable of uploading new entries
-URL - 0.0.0.0:8000/music 
+This is a view showing all stored works and capable of uploading new entries.
+URL - 0.0.0.0:8000/music/
 
 
 ### Works Single View API
 This is a REST API endpoint representing works and capable of searching for certain compositions.
-URL - 0.0.0.0:8000/api/music/works/ - will return 10 latest works as a JSON
-URL - 0.0.0.0:8000/api/music/works/ - with body {"iswc": "T9204649558,T0101974597"} will return search results
+URL - 0.0.0.0:8000/api/music/works/ - will return 10 latest works as a JSON.
+URL - 0.0.0.0:8000/api/music/works/ - with body {"iswc": "T9204649558,T0101974597"} will return search results.
 
 
 ### Q&A
