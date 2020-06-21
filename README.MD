@@ -1,11 +1,11 @@
 # Music with Django
 
-## How to run
+### How to run
 1. Git clone https://github.com/yehorlevchenko/django_with_music.git
 2. docker-compose build
 3. docker-compose up
 
-###Works Single View
+### Works Single View
 This is a view showing all stored works and capable of uploading new entries
 URL - 0.0.0.0:8000/music 
 
@@ -14,7 +14,7 @@ This is a REST API endpoint representing works and capable of searching for cert
 URL - 0.0.0.0:8000/api/music/works/ - will return 10 latest works as a JSON
 URL - 0.0.0.0:8000/api/music/works/ - with body {"iswc": "T9204649558,T0101974597"} will return search results
 
-###Q&A
+### Q&A
 > Describe briefly the matching and reconciling method chosen.
 Matching and reconciling is done by overriden create method in Work model:
 1. Attempt to create an object from a new work data;
@@ -34,7 +34,7 @@ Response time will grow up with:
 Might speed up searching by using index for ISWC lookup.
 
 
-###Side notes
+### Side notes
 1. Contributors are another entity with many-to-many relation to works. Looks more optimal in current context.
 2. Had fun.
 
